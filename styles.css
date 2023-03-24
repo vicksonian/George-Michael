@@ -313,19 +313,19 @@ section {
   width: 80%;
 }
 .about-stats .progress-bars .progress-bar .progress-con .progress .css {
-  width: 95%;
+  width: 80%;
 }
 .about-stats .progress-bars .progress-bar .progress-con .progress .js {
-  width: 75%;
+  width: 45%;
 }
 .about-stats .progress-bars .progress-bar .progress-con .progress .react {
-  width: 60%;
+  width: 15%;
 }
 .about-stats .progress-bars .progress-bar .progress-con .progress .node {
-  width: 87%;
+  width: 5%;
 }
 .about-stats .progress-bars .progress-bar .progress-con .progress .python {
-  width: 70%;
+  width: 20%;
 }
 
 .stat-title {

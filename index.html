@@ -27,13 +27,13 @@
                 </h1>
                 <p>
                     
-                    I'm a Web Developer, I love to create beautiful and functional websites.
+                    I love to create beautiful and functional websites.
                     I'm looking for more opportunities to work in coding on a freelance basis.
 
                 </p>
                 <div class="btn-con">
-                    <a download="" href="" class="main-btn">
-                        <span download="" class="btn-text">Download CV</span> 
+                    <a download="download-cv" href="cv/download-cv.html" class="main-btn">
+                        <span download="download-cv.html" class="btn-text">Download CV</span> 
                         <span class="btn-icon"><i class="fas fa-download"></i></span>
                     </a>
                 </div>
@@ -171,7 +171,7 @@
                         <i class="fas fa-briefcase"></i>
                     </div>
                     <p class="tl-duration">2021 - 2022</p>
-                    <h5>C Programmer<span> - Zetech University</span></h5>
+                    <h5>C & C++ Programmer<span> - Zetech University</span></h5>
                     <p>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe quasi vero fugit.
                     </p>
@@ -575,5 +575,17 @@
     })
 })();
     </script>
+
+<script>
+    document.getElementById('download-cv').addEventListener('click', () => {
+      const pdf = new jsPDF();
+      const element = document.getElementById('download-cv.html');
+      pdf.html(element, {
+        callback: function (pdf) {
+          pdf.save('filename.pdf');
+        }
+      });
+    });
+  </script>
 </body>
 </html>
