@@ -616,6 +616,71 @@ section {
   margin-left: 1.5rem;
 }
 
+.main__btn
+{
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+
+
+.main__btn button
+{
+  position: relative;
+  height: 6em;
+  width: 6em;
+  border-radius: 100%;
+  outline: none;
+  border: 4px #090909 solid;
+  background: linear-gradient(145deg,#171717, #444245);
+  box-shadow: inset 2px 2px 0px,inset -2px -2px 0px, 0px 0px 0px 2px #1c1c1c;
+  color : #fff;
+  transition: all 0.4s ease-in-out;
+  cursor: pointer;
+}
+
+.main__btn button:hover
+{
+  color: var(--color-secondary);
+}
+
+.main__btn button::before
+{
+  position: absolute;
+  content: '';
+  height: 7em;
+  width: 7em;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  border-radius: inherit;
+  background: linear-gradient(145deg,#262626, #606060);
+  box-shadow: 1px 1px 22px #141414, -1px -1px 22px #525252;
+  z-index: -1;
+  
+}
+
+.main__btn button::before:hover
+{
+color:#27AE60;
+}
+
+.main__btn button i
+{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  font-size: 2.5em;
+}
+
+.main__btn button i:hover
+{
+color: var(--color-secondary);
+}
+
+
 
 /*Independed components*/
 .btn-con {
