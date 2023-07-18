@@ -644,7 +644,7 @@
             });
 
             document.querySelector(".theme-btn").addEventListener("click", () => {
-                document.body.classList.toggle("light-mode");
+                document.body.classList.toggle("lightmode"); 
             })
         })();
     </script>
@@ -659,6 +659,59 @@
                 }
             });
         });
+    </script>
+
+    <script>
+        const body = document.querySelector('body');
+const btn = document.querySelector('.btn');
+const icon = document.querySelector('.btn__icon');
+
+//to save the dark mode use the object "local storage".
+
+//function that stores the value true if the dark mode is activated or false if it's not.
+function store(value){
+  localStorage.setItem('lightmode', value);
+}
+
+//function that indicates if the "darkmode" property exists. It loads the page as we had left it.
+function load(){
+  const lightmode = localStorage.getItem('lightmode');
+
+  //if the dark mode was never activated
+  if(!lightmode){
+    store(false);
+    icon.classList.add('fa-sun');
+  } else if( lightmode == 'true'){ //if the dark mode is activated
+    body.classList.add('lightmode');
+    icon.classList.add('fa-moon');
+  } else if(lightmode == 'false'){ //if the dark mode exists but is disabled
+    icon.classList.add('fa-sun');
+  }
+}
+
+
+load();
+
+btn.addEventListener('click', () => {
+
+  body.classList.toggle('lightmode');
+  icon.classList.add('animated');
+
+  //save true or false
+  store(body.classList.contains('lightmode'));
+
+  if(body.classList.contains('lightmode')){
+    icon.classList.remove('fa-sun');
+    icon.classList.add('fa-moon');
+  }else{
+    icon.classList.remove('fa-moon');
+    icon.classList.add('fa-sun');
+  }
+
+  setTimeout( () => {
+    icon.classList.remove('animated');
+  }, 500)
+})
     </script>
 </body>
 
