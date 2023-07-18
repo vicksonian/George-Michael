@@ -751,11 +751,17 @@ btn.addEventListener('click', () => {
     icon.classList.remove('animated');
   }, 500)
 })
-    </script><script>
+    </script>
+    
+    <script>
   (function () {
     // Retrieve the active section and scroll position from localStorage (if exists) and activate it
     const activeSection = localStorage.getItem("activeSection");
     const scrollPosition = localStorage.getItem("scrollPosition");
+      // JavaScript code to toggle light mode
+const body = document.querySelector('body');
+body.classList.toggle('lightmode');
+
     if (activeSection) {
       document.querySelector(".active-btn").classList.remove("active-btn");
       document.querySelector(`[data-id="${activeSection}"]`).classList.add("active-btn");
