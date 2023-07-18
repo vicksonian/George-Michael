@@ -753,14 +753,63 @@ btn.addEventListener('click', () => {
 })
     </script>
     
-    <script>
-  (function () {
+<script>
+  const body = document.querySelector('body');
+  const btn = document.querySelector('.btn');
+  const icon = document.querySelector('.btn__icon');
+
+  // Function to store the theme preference
+  function storeTheme(value) {
+    localStorage.setItem('lightmode', value);
+  }
+
+  // Function to load the saved theme preference
+  function loadTheme() {
+    const lightmode = localStorage.getItem('lightmode');
+
+    if (!lightmode) {
+      // If the theme preference was never set, default to dark mode
+      storeTheme('false');
+      icon.classList.add('fa-sun');
+    } else if (lightmode === 'true') {
+      // If the theme preference is true, enable light mode
+      body.classList.add('lightmode');
+      icon.classList.add('fa-moon');
+    } else {
+      // If the theme preference is false, disable light mode
+      icon.classList.add('fa-sun');
+    }
+  }
+
+  // Load the saved theme preference on page load
+  loadTheme();
+
+  btn.addEventListener('click', () => {
+    body.classList.toggle('lightmode');
+    icon.classList.add('animated');
+
+    // Save the updated theme preference
+    storeTheme(body.classList.contains('lightmode'));
+
+    if (body.classList.contains('lightmode')) {
+      icon.classList.remove('fa-sun');
+      icon.classList.add('fa-moon');
+    } else {
+      icon.classList.remove('fa-moon');
+      icon.classList.add('fa-sun');
+    }
+
+    setTimeout(() => {
+      icon.classList.remove('animated');
+    }, 500);
+  });
+</script>
+
+<script>
+  (function() {
     // Retrieve the active section and scroll position from localStorage (if exists) and activate it
     const activeSection = localStorage.getItem("activeSection");
     const scrollPosition = localStorage.getItem("scrollPosition");
-      // JavaScript code to toggle light mode
-const body = document.querySelector('body');
-body.classList.toggle('lightmode');
 
     if (activeSection) {
       document.querySelector(".active-btn").classList.remove("active-btn");
@@ -776,7 +825,7 @@ body.classList.toggle('lightmode');
 
     // Add click event listeners to the control buttons
     [...document.querySelectorAll(".control")].forEach((button) => {
-      button.addEventListener("click", function () {
+      button.addEventListener("click", function() {
         // Store the active section and scroll position in localStorage
         const selectedSection = this.dataset.id;
         localStorage.setItem("activeSection", selectedSection);
@@ -792,7 +841,7 @@ body.classList.toggle('lightmode');
 
     // Add click event listener to the theme button
     const themeBtn = document.querySelector(".theme-btn");
-    themeBtn.addEventListener("click", function () {
+    themeBtn.addEventListener("click", function() {
       // Toggle lightmode class on the body
       document.body.classList.toggle("lightmode");
 
@@ -809,18 +858,6 @@ body.classList.toggle('lightmode');
   })();
 </script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
-<script>
-  document.getElementById("download-cv").addEventListener("click", () => {
-    const pdf = new jsPDF();
-    const element = document.getElementById("download-cv");
-    pdf.html(element, {
-      callback: function (pdf) {
-        pdf.save("filename.pdf");
-      },
-    });
-  });
-</script>
 
 </body>
 
