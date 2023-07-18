@@ -751,7 +751,71 @@ btn.addEventListener('click', () => {
     icon.classList.remove('animated');
   }, 500)
 })
-    </script>
+    </script><script>
+  (function () {
+    // Retrieve the active section and scroll position from localStorage (if exists) and activate it
+    const activeSection = localStorage.getItem("activeSection");
+    const scrollPosition = localStorage.getItem("scrollPosition");
+    if (activeSection) {
+      document.querySelector(".active-btn").classList.remove("active-btn");
+      document.querySelector(`[data-id="${activeSection}"]`).classList.add("active-btn");
+      document.querySelector(".active").classList.remove("active");
+      document.getElementById(activeSection).classList.add("active");
+
+      // Restore the scroll position
+      if (scrollPosition) {
+        window.scrollTo(0, scrollPosition);
+      }
+    }
+
+    // Add click event listeners to the control buttons
+    [...document.querySelectorAll(".control")].forEach((button) => {
+      button.addEventListener("click", function () {
+        // Store the active section and scroll position in localStorage
+        const selectedSection = this.dataset.id;
+        localStorage.setItem("activeSection", selectedSection);
+        localStorage.setItem("scrollPosition", window.pageYOffset);
+
+        // Activate the selected section
+        document.querySelector(".active-btn").classList.remove("active-btn");
+        this.classList.add("active-btn");
+        document.querySelector(".active").classList.remove("active");
+        document.getElementById(selectedSection).classList.add("active");
+      });
+    });
+
+    // Add click event listener to the theme button
+    const themeBtn = document.querySelector(".theme-btn");
+    themeBtn.addEventListener("click", function () {
+      // Toggle lightmode class on the body
+      document.body.classList.toggle("lightmode");
+
+      // Store the current state of lightmode in localStorage
+      const isLightMode = document.body.classList.contains("lightmode");
+      localStorage.setItem("lightmode", isLightMode);
+    });
+
+    // Load the saved light mode state on page load
+    const isLightMode = localStorage.getItem("lightmode");
+    if (isLightMode === "true") {
+      document.body.classList.add("lightmode");
+    }
+  })();
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+<script>
+  document.getElementById("download-cv").addEventListener("click", () => {
+    const pdf = new jsPDF();
+    const element = document.getElementById("download-cv");
+    pdf.html(element, {
+      callback: function (pdf) {
+        pdf.save("filename.pdf");
+      },
+    });
+  });
+</script>
+
 </body>
 
 </html>
